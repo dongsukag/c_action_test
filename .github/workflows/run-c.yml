@@ -25,18 +25,25 @@ jobs:
     - name: Run C binary and save output
       run: ./main > result.txt
 
-    - name: Insert result into README.md using heredoc
+    - name: Insert result into README.md using tmp file
       run: |
         RESULT=$(cat result.txt)
-        echo "Updating README.md with result: $RESULT"
-        sed -i '/<!-- RESULT_START -->/,/<!-- RESULT_END -->/c\'"$(cat <<EOF
-        <!-- RESULT_START -->
-        \`\`\`
-        $RESULT
-        \`\`\`
-        <!-- RESULT_END -->
-        EOF
-          )" README.md
+
+        # escape backticks (optional, 안전하게 처리)
+        ESCAPED_RESULT=$(printf '%s\n' "$RESULT" | sed 's/`/\\`/g')
+
+        # create new README content using awk
+        awk -v r="$ESCAPED_RESULT" '
+        BEGIN {print_block=1}
+        /<!-- RESULT_START -->/ {
+          print; print "```"; print r; print "```"
+          print_block=0; next
+        }
+        /<!-- RESULT_END -->/ {print; print_block=1; next}
+        print_block
+        ' README.md > README.new
+
+        mv README.new README.md
 
     - name: Commit and push changes
       run: |
