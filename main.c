@@ -2,6 +2,6 @@
 
 int main(void)
 {
-    printf("안녕\n");
+    printf("반갑습니다\n");
     return 0;
 }
