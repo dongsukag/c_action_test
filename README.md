@@ -4,5 +4,6 @@
 ```
 반갑습니다
 github action c언어 test
+반갑습니다
 ```
 <!-- RESULT_END -->
