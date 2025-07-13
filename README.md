@@ -3,5 +3,6 @@
 <!-- RESULT_START -->
 ```
 반갑습니다
+github action c언어 test
 ```
 <!-- RESULT_END -->
