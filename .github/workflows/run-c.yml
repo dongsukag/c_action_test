@@ -1,0 +1,37 @@
+name: Run C Code and Update README
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v4
+
+    - name: Install GCC
+      run: sudo apt update && sudo apt install -y build-essential
+
+    - name: Compile C code
+      run: gcc main.c -o main
+
+    - name: Run C binary and save output
+      run: ./main > result.txt
+
+    - name: Insert result into README.md
+      run: |
+        RESULT=$(cat result.txt)
+        awk '/<!-- RESULT_START -->/{print;print "```\n" ENVIRON["RESULT"] "\n```";found=1;next} /<!-- RESULT_END -->/{found=0} !found' README.md > new_readme.md
+        mv new_readme.md README.md
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "actions@github.com"
+        git add README.md
+        git commit -m "Update README with execution result" || echo "No changes to commit"
+        git push
