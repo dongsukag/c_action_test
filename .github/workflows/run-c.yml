@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # <-- Git push 권한 부여
-  
+  contents: write  # GitHub Actions가 푸시할 수 있도록 권한 부여
+
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
@@ -31,10 +31,10 @@ jobs:
         awk '/<!-- RESULT_START -->/{print;print "```\n" ENVIRON["RESULT"] "\n```";found=1;next} /<!-- RESULT_END -->/{found=0} !found' README.md > new_readme.md
         mv new_readme.md README.md
 
-    - name: Commit and push changes
+    - name: Commit and push changes (README.md + result.txt)
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "actions@github.com"
-        git add README.md
-        git commit -m "Update README with execution result" || echo "No changes to commit"
+        git add README.md result.txt
+        git commit -m "Update README and add result.txt" || echo "No changes to commit"
         git push
