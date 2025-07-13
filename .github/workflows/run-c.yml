@@ -5,6 +5,9 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: write  # <-- Git push 권한 부여
+  
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
