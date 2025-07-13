@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # GitHub Actions가 푸시할 수 있도록 권한 부여
+  contents: write  # GitHub Actions가 저장소에 push할 수 있도록 권한 부여
 
 jobs:
   build-and-run:
@@ -25,11 +25,11 @@ jobs:
     - name: Run C binary and save output
       run: ./main > result.txt
 
-    - name: Insert result into README.md
+    - name: Insert result into README.md using sed
       run: |
         RESULT=$(cat result.txt)
-        awk '/<!-- RESULT_START -->/{print;print "```\n" ENVIRON["RESULT"] "\n```";found=1;next} /<!-- RESULT_END -->/{found=0} !found' README.md > new_readme.md
-        mv new_readme.md README.md
+        sed -i "/<!-- RESULT_START -->/,/<!-- RESULT_END -->/c\
+<!-- RESULT_START -->\n\`\`\`\n$RESULT\n\`\`\`\n<!-- RESULT_END -->" README.md
 
     - name: Commit and push changes (README.md + result.txt)
       run: |
