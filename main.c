@@ -2,8 +2,9 @@
 
 int main(void)
 {
-    printf("반갑습니다\n");
+    int i;
+    for(i = 0; i < 3; i++){
     printf("github action c언어 test\n");
-    printf("반갑습니다\n");
+    }
     return 0;
 }
