@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # GitHub Actions가 저장소에 push할 수 있도록 권한 부여
+  contents: write
 
 jobs:
   build-and-run:
@@ -28,10 +28,14 @@ jobs:
     - name: Insert result into README.md using sed
       run: |
         RESULT=$(cat result.txt)
-        sed -i "/<!-- RESULT_START -->/,/<!-- RESULT_END -->/c\
-<!-- RESULT_START -->\n\`\`\`\n$RESULT\n\`\`\`\n<!-- RESULT_END -->" README.md
+        sed -i "/<!-- RESULT_START -->/,/<!-- RESULT_END -->/c\\
+<!-- RESULT_START -->\\
+\`\`\`\\
+$RESULT\\
+\`\`\`\\
+<!-- RESULT_END -->" README.md
 
-    - name: Commit and push changes (README.md + result.txt)
+    - name: Commit and push changes
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "actions@github.com"
