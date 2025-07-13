@@ -29,11 +29,11 @@ jobs:
       run: |
         RESULT=$(cat result.txt)
         sed -i "/<!-- RESULT_START -->/,/<!-- RESULT_END -->/c\\
-<!-- RESULT_START -->\\
-\`\`\`\\
-$RESULT\\
-\`\`\`\\
-<!-- RESULT_END -->" README.md
+        <!-- RESULT_START -->\\
+        \`\`\`\\
+        $RESULT\\
+        \`\`\`\\
+        <!-- RESULT_END -->" README.md
 
     - name: Commit and push changes
       run: |
