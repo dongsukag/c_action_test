@@ -7,5 +7,7 @@
 3.github action c언어 test
 4.github action c언어 test
 5.github action c언어 test
+6.github action c언어 test
+7.github action c언어 test
 ```
 <!-- RESULT_END -->
