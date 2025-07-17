@@ -2,14 +2,12 @@
 깃허브 액션 c코드
 <!-- RESULT_START -->
 ```
-1.github action c언어 test
-2.github action c언어 test
-3.github action c언어 test
-4.github action c언어 test
-5.github action c언어 test
-6.github action c언어 test
-7.github action c언어 test
-8.github action c언어 test
+1.github action c언어 test 야호
+2.github action c언어 test 야호
+3.github action c언어 test 야호
+4.github action c언어 test 야호
+5.github action c언어 test 야호
+6.github action c언어 test 야호
 hi
 ```
 <!-- RESULT_END -->
