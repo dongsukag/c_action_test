@@ -2,12 +2,12 @@
 깃허브 액션 c코드
 <!-- RESULT_START -->
 ```
-1.github action c언어 test 야호
-2.github action c언어 test 야호
-3.github action c언어 test 야호
-4.github action c언어 test 야호
-5.github action c언어 test 야호
-6.github action c언어 test 야호
+1.소방안전관리자2급 합격
+2.소방안전관리자2급 합격
+3.소방안전관리자2급 합격
+4.소방안전관리자2급 합격
+5.소방안전관리자2급 합격
+6.소방안전관리자2급 합격
 hi
 ```
 <!-- RESULT_END -->
